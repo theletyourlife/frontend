@@ -1,19 +1,26 @@
-const button = document.querySelector("button")
-const main = document.querySelector("main")
-button.addEventListener("click", buscarMensagemNoBackend)
+function init() {
+    navUl = document.querySelector("nav ul")
 
-async function buscarMensagemNoBackend() {
-   const persons = await fetch("http://localhost:3333").then((response) => response.json())
-    persons.map((person) => {
-       main.innerHTML += `
-        <section>
-            <h2>Nome: ${person.name}</h2>
-            <h3>Apelido: ${person.nickname}</h3>
-            <h3>Idade: ${person.age} anos</h3>
-            <h3>E-mail: ${person.email}</h3>
-        </section>
-        <hr>
-       `
-    })
-   console.log(persons)
+    const user = JSON.parse(sessionStorage.getItem("user"))
+
+    if (user) {
+        navUl.innerHTML += `
+        <li><h2>Usuário: ${user.name}</h2></li>
+        <li><button>Sair</button></li>
+        `
+
+        return
+    }
+
+    navUl.innerHTML += `
+        <li>
+          <a href="./pages/usuarios/usuarios.html">Lista de Usuários</a>
+        </li>
+        <li>
+          <a href="./pages/login/login.html">Login</a>
+        </li>
+    `    
 }
+
+
+init()

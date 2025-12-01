@@ -17,7 +17,7 @@ async function signUpUser() {
         nickname
     }   
 
-  const response = await fetch("http://localhost:3333/cadastrar", {
+  const response = await fetch("https://back-lake-pi.vercel.app//cadastrar", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -26,4 +26,6 @@ async function signUpUser() {
    }).then(response => response.json())
 
    alert(response.message)
+
+   window.location.href = "../index.html"
 }
